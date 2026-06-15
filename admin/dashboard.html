@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — TrendPulse AI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .admin-page { display: flex; min-height: 100vh; }
+    .admin-sidebar { width: 260px; background: #1A1A2E; color: white; padding: 24px; display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-sidebar .logo { color: white !important; margin-bottom: 32px; }
+    .admin-sidebar .logo span { -webkit-text-fill-color: white; }
+    .admin-nav { flex: 1; }
+    .admin-nav a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; margin-bottom: 4px; }
+    .admin-nav a:hover, .admin-nav a.active { background: rgba(255,255,255,0.1); color: white; }
+    .admin-nav a.logout { margin-top: auto; color: #fca5a5; }
+    .admin-nav a.logout:hover { background: rgba(252,165,165,0.1); }
+    .admin-main { flex: 1; padding: 32px; background: #F8F9FA; overflow-y: auto; }
+    .admin-header { margin-bottom: 32px; }
+    .admin-header h1 { font-size: 1.8rem; margin-bottom: 4px; }
+    .admin-header p { color: var(--gray-600); font-size: 0.95rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .stat-card .stat-value { font-size: 2rem; font-weight: 800; color: var(--primary); }
+    .stat-card .stat-label { font-size: 0.85rem; color: var(--gray-600); margin-top: 4px; }
+    .admin-section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .admin-section h2 { font-size: 1.2rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .product-item { display: grid; grid-template-columns: 60px 1fr auto auto; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+    .product-item:last-child { border-bottom: none; }
+    .product-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+    .product-item .info h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .product-item .info p { font-size: 0.8rem; color: var(--gray-600); }
+    .product-item .price { text-align: right; }
+    .product-item .price .sell { font-weight: 700; color: var(--primary); }
+    .product-item .price .cost { font-size: 0.8rem; color: var(--gray-500); }
+    .product-item .actions { display: flex; gap: 8px; }
+    .product-item .actions a { padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; text-decoration: none; font-weight: 600; }
+    .btn-supplier { background: #f0fdf4; color: #16a34a; }
+    .btn-paypal { background: #f0f6ff; color: #0070ba; }
+    .btn-view { background: var(--gray-100); color: var(--gray-700); }
+    .order-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+    .flow-step { background: #f8f9fa; border-radius: 10px; padding: 16px; text-align: center; }
+    .flow-step .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--gradient); color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; }
+    .flow-step h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .flow-step p { font-size: 0.8rem; color: var(--gray-600); }
+    .badge-count { background: var(--secondary); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; }
+    .complaint-entry { padding: 16px; border-left: 4px solid #d97706; background: #f8f9fa; border-radius: 0 8px 8px 0; margin-bottom: 8px; }
+    .complaint-entry.resolved { border-left-color: #16a34a; }
+    .review-item { padding: 12px; border-bottom: 1px solid var(--gray-100); }
+    .review-item:last-child { border-bottom: none; }
+    .discount-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 8px; margin-bottom: 6px; }
+    @media (max-width: 768px) {
+      .admin-page { flex-direction: column; }
+      .admin-sidebar { width: 100%; padding: 16px; }
+      .admin-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+      .admin-nav a { font-size: 0.8rem; padding: 8px 12px; }
+      .admin-main { padding: 16px; }
+      .product-item { grid-template-columns: 50px 1fr; }
+      .product-item .actions { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-page">
+    <aside class="admin-sidebar">
+      <div class="logo"><div class="logo-icon">⚡</div><span>TrendPulse AI</span></div>
+      <nav class="admin-nav">
+        <a href="/admin/dashboard.html" class="active">📊 Dashboard</a>
+        <a href="/admin/dashboard.html#products">📦 Products</a>
+        <a href="/admin/orders.html">📋 Orders</a>
+        <a href="/admin/suppliers.html">🚚 Suppliers</a>
+        <a href="/" target="_blank">👁️ View Store</a>
+        <a href="#" onclick="handleLogout()" class="logout">🚪 Logout</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>📊 Store Dashboard</h1>
+        <p>Manage your TrendPulse AI dropshipping store</p>
+      </div>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card"><div class="stat-value" id="product-count">0</div><div class="stat-label">📦 Active Products</div></div>
+        <div class="stat-card"><div class="stat-value" id="avg-profit">$0</div><div class="stat-label">💰 Avg Profit per Sale</div></div>
+        <div class="stat-card"><div class="stat-value" id="total-margin">0%</div><div class="stat-label">📈 Average Margin</div></div>
+        <div class="stat-card"><div class="stat-value" id="lowest-price">$0</div><div class="stat-label">🔰 Cheapest Product</div></div>
+      </div>
+
+      <div class="admin-section">
+        <h2>🔄 How to Fulfill an Order</h2>
+        <div class="order-flow">
+          <div class="flow-step"><div class="step-num">1</div><h4>Customer Pays via PayPal</h4><p>You get notified in PayPal. Check the customer's shipping address.</p></div>
+          <div class="flow-step"><div class="step-num">2</div><h4>Copy Shipping Info</h4><p>Copy name, address, phone, email from the PayPal notification.</p></div>
+          <div class="flow-step"><div class="step-num">3</div><h4>Order from Supplier</h4><p>Click the supplier link → buy the item → paste the customer's address.</p></div>
+          <div class="flow-step"><div class="step-num">4</div><h4>Supplier Ships Direct</h4><p>Forward tracking to customer. You keep the profit! 🎉</p></div>
+        </div>
+      </div>
+
+      <div class="admin-section" id="products">
+        <h2>📦 Your Products <span class="badge-count" id="product-badge">0</span></h2>
+        <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:16px;">✅ All suppliers are <strong>4.5+ star rated</strong> with 500+ orders. Only quality suppliers make the cut.</p>
+        <div id="product-list"><p style="text-align:center;padding:20px;color:var(--gray-500);">Loading products...</p></div>
+      </div>
+
+      <div class="admin-section" id="complaints-section">
+        <h2>📋 Customer Complaints <span class="badge-count" id="complaint-badge">0</span></h2>
+        <div id="complaint-list"><p style="text-align:center;padding:20px;color:var(--gray-500);">No complaints yet. 🎉</p></div>
+      </div>
+
+      <div class="admin-section">
+        <h2>⭐ Customer Reviews <span class="badge-count" id="review-badge">0</span></h2>
+        <div id="review-list"><p style="text-align:center;padding:20px;color:var(--gray-500);">No reviews yet.</p></div>
+      </div>
+
+      <div class="admin-section">
+        <h2>🎫 Discount Codes Issued <span class="badge-count" id="discount-badge">0</span></h2>
+        <div id="discount-list"><p style="text-align:center;padding:20px;color:var(--gray-500);">No discount codes issued yet.</p></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    if (!localStorage.getItem('trendpulse_admin_logged_in')) { window.location.href = '/admin.html'; }
+
+    function handleLogout() {
+      localStorage.removeItem('trendpulse_admin_logged_in');
+      window.location.href = '/admin.html';
+    }
+
+    async function loadProducts() {
+      try {
+        const res = await fetch('/products.json');
+        const data = await res.json();
+        const products = Array.isArray(data) ? data : (data.products || []);
+        document.getElementById('product-count').textContent = products.length;
+        document.getElementById('product-badge').textContent = products.length;
+
+        const profits = products.map(p => (p.sale_price || p.sell_price) - p.supplier_cost);
+        document.getElementById('avg-profit').textContent = '$' + (profits.reduce((a,b)=>a+b,0)/profits.length).toFixed(2);
+
+        const margins = products.map(p => ((p.sale_price||p.sell_price) - p.supplier_cost) / (p.sale_price||p.sell_price) * 100);
+        document.getElementById('total-margin').textContent = (margins.reduce((a,b)=>a+b,0)/margins.length).toFixed(0) + '%';
+
+        const prices = products.map(p => p.sale_price || p.sell_price);
+        document.getElementById('lowest-price').textContent = '$' + Math.min(...prices).toFixed(2);
+
+        document.getElementById('product-list').innerHTML = products.map(p => {
+          const sell = p.sale_price || p.sell_price;
+          const cost = p.supplier_cost;
+          const profit = sell - cost;
+          const margin = ((profit/sell)*100).toFixed(0);
+          const discPrice = (sell * 0.9).toFixed(2);
+          const discProfit = (sell * 0.9 - cost).toFixed(2);
+          const img = p.image || p.image_url || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=100';
+          const title = p.title || p.name;
+          return `<div class="product-item"><img src="${img}" alt="${title}" loading="lazy"><div class="info"><h4>${title}</h4><p>💰 Profit: <strong>$${profit.toFixed(2)}</strong> (${margin}% margin) · ${p.category||''}</p><p style="font-size:0.75rem;color:var(--gray-500);">10% off: $${discPrice} → profit still $${discProfit} ✅</p></div><div class="price"><div class="sell">$${sell.toFixed(2)}</div><div class="cost">Cost: $${cost.toFixed(2)}</div></div><div class="actions"><a href="${p.supplier_link||'#'}" target="_blank" class="btn-supplier">🚚 Supplier</a><a href="${p.paypal_link||`https://www.paypal.me/VikingTails/${sell.toFixed(2)}`}" target="_blank" class="btn-paypal">💳 PayPal</a><a href="/product.html?id=${p.id}" target="_blank" class="btn-view">👁️ View</a></div></div>`;
+        }).join('');
+      } catch(e) {
+        document.getElementById('product-list').innerHTML = '<p style="text-align:center;padding:20px;color:#dc2626;">❌ Failed to load products.</p>';
+      }
+    }
+
+    function loadComplaints() {
+      const complaints = JSON.parse(localStorage.getItem('trendpulse_complaints') || '[]');
+      document.getElementById('complaint-badge').textContent = complaints.length;
+      const list = document.getElementById('complaint-list');
+      if (!complaints.length) { list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--gray-500);">No complaints yet. 🎉</p>'; return; }
+      const emoji = {missing:'📦', damaged:'💔', wrong:'🔄', defective:'🔧'};
+      list.innerHTML = complaints.map(c => `
+        <div class="complaint-entry ${c.status === 'Resolved' ? 'resolved' : ''}">
+          <div style="display:flex;justify-content:space-between;"><strong>${emoji[c.type]||'📋'} ${c.type.toUpperCase()} · ${c.order}</strong><span style="font-size:0.8rem;color:var(--gray-500);">${new Date(c.date).toLocaleDateString()}</span></div>
+          <p style="font-size:0.9rem;margin:4px 0;">${c.description}</p>
+          <p style="font-size:0.8rem;color:var(--gray-600);">📧 ${c.email} · <strong style="color:${c.status==='Resolved'?'#16a34a':'#d97706'};">${c.status}</strong> ${c.photos?.length ? '· 📸 '+c.photos.length+' photos' : ''}</p>
+          ${c.status !== 'Resolved' ? `<button onclick="resolveComplaint('${c.id}')" style="margin-top:8px;padding:6px 14px;background:#16a34a;color:white;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;">✅ Mark Resolved</button>` : ''}
+        </div>`).join('');
+    }
+
+    function resolveComplaint(id) {
+      const c = JSON.parse(localStorage.getItem('trendpulse_complaints') || '[]');
+      const idx = c.findIndex(x => x.id === id);
+      if (idx !== -1) { c[idx].status = 'Resolved'; localStorage.setItem('trendpulse_complaints', JSON.stringify(c)); loadComplaints(); }
+    }
+
+    function loadReviews() {
+      const reviews = JSON.parse(localStorage.getItem('trendpulse_reviews') || '[]');
+      document.getElementById('review-badge').textContent = reviews.length;
+      const list = document.getElementById('review-list');
+      if (!reviews.length) { list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--gray-500);">No reviews yet.</p>'; return; }
+      list.innerHTML = reviews.map(r => `<div class="review-item"><div style="display:flex;justify-content:space-between;"><strong>${r.name}</strong> <span style="color:#f59e0b;">${'★'.repeat(r.rating)}</span></div><p style="font-size:0.85rem;color:var(--gray-600);">${r.text}</p><p style="font-size:0.75rem;color:var(--gray-500);">${r.date} · ${r.email}</p></div>`).join('');
+    }
+
+    function loadDiscounts() {
+      const codes = JSON.parse(localStorage.getItem('trendpulse_discount_codes') || '[]');
+      document.getElementById('discount-badge').textContent = codes.length;
+      const list = document.getElementById('discount-list');
+      if (!codes.length) { list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--gray-500);">No discount codes issued yet.</p>'; return; }
+      list.innerHTML = codes.map(c => `<div class="discount-item"><div><strong style="font-family:monospace;font-size:1rem;">${c.code}</strong><span style="font-size:0.8rem;color:var(--gray-500);margin-left:8px;">10% off · ${c.email}</span></div><span style="font-size:0.8rem;padding:2px 8px;border-radius:4px;background:${c.used?'#fef2f2':'#f0fdf4'};color:${c.used?'#dc2626':'#16a34a'};">${c.used?'Used':'Active'}</span></div>`).join('');
+    }
+
+    loadProducts(); loadComplaints(); loadReviews(); loadDiscounts();
+  </script>
+</body>
+</html>

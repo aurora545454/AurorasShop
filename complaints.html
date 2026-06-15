@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue — TrendPulse AI</title>
+  <meta name="description" content="Report a missing, damaged, or defective item. We'll make it right within 24 hours.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Customer Support — TrendPulse AI">
+  <meta property="og:description" content="We'll make it right. Report issues here.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .complaint-page { max-width: 700px; margin: 0 auto; padding: 40px 24px 80px; }
+    .complaint-page h1 { text-align: center; margin-bottom: 8px; }
+    .complaint-page > p { text-align: center; color: var(--gray-600); margin-bottom: 32px; }
+    .complaint-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .complaint-card .form-group { margin-bottom: 20px; }
+    .complaint-card label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+    .complaint-card input, .complaint-card select, .complaint-card textarea {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 0.95rem; transition: border-color 0.2s; font-family: inherit;
+    }
+    .complaint-card input:focus, .complaint-card select:focus, .complaint-card textarea:focus {
+      outline: none; border-color: var(--primary);
+    }
+    .complaint-card textarea { min-height: 120px; resize: vertical; }
+    .photo-upload-area {
+      border: 2px dashed var(--gray-300); border-radius: 12px; padding: 32px; text-align: center; cursor: pointer; transition: all 0.2s;
+    }
+    .photo-upload-area:hover { border-color: var(--primary); background: #f8f4ff; }
+    .photo-upload-area .icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .photo-upload-area p { font-size: 0.9rem; color: var(--gray-600); }
+    .photo-upload-area .hint { font-size: 0.8rem; color: var(--gray-500); margin-top: 4px; }
+    .photo-previews { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .photo-preview { width: 80px; height: 80px; border-radius: 8px; overflow: hidden; position: relative; }
+    .photo-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-preview .remove {
+      position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: #dc2626; color: white;
+      border-radius: 50%; border: none; cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center;
+    }
+    .issue-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .issue-type-btn {
+      padding: 16px; text-align: center; border: 2px solid var(--gray-200); border-radius: 10px;
+      cursor: pointer; transition: all 0.2s; background: white; font-size: 0.9rem;
+    }
+    .issue-type-btn:hover { border-color: var(--primary); }
+    .issue-type-btn.selected { border-color: var(--primary); background: #f8f4ff; }
+    .issue-type-btn .emoji { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+    .success-message { display: none; text-align: center; padding: 40px; }
+    .success-message .check { font-size: 3rem; margin-bottom: 16px; }
+    .success-message h2 { margin-bottom: 8px; }
+    .success-message p { color: var(--gray-600); }
+    input[type="file"] { display: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><div class="logo-icon">⚡</div><span>TrendPulse AI</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/complaints.html">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="complaint-page">
+    <h1>📋 Report an Issue</h1>
+    <p>Missing item? Damaged in transit? We'll make it right — guaranteed.</p>
+
+    <div class="complaint-card" id="complaint-form-card">
+      <form id="complaint-form" onsubmit="submitComplaint(event)">
+        <label style="font-weight:700;font-size:0.95rem;margin-bottom:12px;display:block;">What's the issue?</label>
+        <div class="issue-type-grid">
+          <div class="issue-type-btn selected" data-value="missing" onclick="selectIssue(this)">
+            <span class="emoji">📦</span> Missing Item
+          </div>
+          <div class="issue-type-btn" data-value="damaged" onclick="selectIssue(this)">
+            <span class="emoji">💔</span> Damaged / Broken
+          </div>
+          <div class="issue-type-btn" data-value="wrong" onclick="selectIssue(this)">
+            <span class="emoji">🔄</span> Wrong Item
+          </div>
+          <div class="issue-type-btn" data-value="defective" onclick="selectIssue(this)">
+            <span class="emoji">🔧</span> Not Working
+          </div>
+        </div>
+        <input type="hidden" id="issue-type" value="missing">
+
+        <div class="form-group">
+          <label>Order Number (from PayPal)</label>
+          <input type="text" id="order-number" placeholder="e.g. PP-1234567890" required>
+        </div>
+
+        <div class="form-group">
+          <label>Your Email (for updates)</label>
+          <input type="email" id="customer-email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Describe the issue</label>
+          <textarea id="issue-description" placeholder="Tell us what happened... Did something not arrive? Was it broken when opened?" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Photos (optional but helps us resolve faster)</label>
+          <div class="photo-upload-area" onclick="document.getElementById('photo-input').click()">
+            <div class="icon">📸</div>
+            <p>Tap to add photos of the issue</p>
+            <p class="hint">PNG, JPG — show the damage or missing packaging</p>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" multiple onchange="handlePhotos(event)">
+          <div id="photo-previews" class="photo-previews"></div>
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-lg" style="width:100%;">📨 Submit Report</button>
+        <p style="text-align:center;font-size:0.8rem;color:var(--gray-500);margin-top:12px;">We respond within 24 hours. All issues are covered by our 30-day guarantee.</p>
+      </form>
+    </div>
+
+    <div class="complaint-card" id="success-message" style="display:none;">
+      <div class="success-message" style="display:block;">
+        <div class="check">✅</div>
+        <h2>Report Submitted!</h2>
+        <p>We've received your issue and will email you within 24 hours with a solution.</p>
+        <p style="margin-top:16px;">In the meantime, here's what to expect:</p>
+        <div style="text-align:left;margin-top:16px;padding:16px;background:#f8f9fa;border-radius:8px;">
+          <p>📌 <strong>Missing item?</strong> We'll ship a replacement immediately.</p>
+          <p>📌 <strong>Damaged?</strong> Send us photos (already done!) and we'll send a replacement.</p>
+          <p>📌 <strong>Wrong item?</strong> Keep it as a gift — we'll send the correct one free.</p>
+        </div>
+        <a href="/" class="btn btn-primary" style="margin-top:24px;display:inline-block;">← Back to Store</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color:var(--white);"><div class="logo-icon">⚡</div><span style="-webkit-text-fill-color:var(--white);">TrendPulse AI</span></div>
+          <p>AI-powered product discovery. We find the trends so you can enjoy the best products at the best prices.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <a href="/complaints.html">Report an Issue</a>
+          <a href="/about.html#shipping">Shipping Info</a>
+          <a href="/about.html#returns">Returns Policy</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 TrendPulse AI</span><span>Made with ❤️</span></div>
+    </div>
+  </footer>
+
+  <script>
+    let uploadedPhotos = [];
+
+    function selectIssue(el) {
+      document.querySelectorAll('.issue-type-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('issue-type').value = el.dataset.value;
+    }
+
+    function handlePhotos(e) {
+      const files = Array.from(e.target.files);
+      files.forEach(file => {
+        if (uploadedPhotos.length >= 5) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          uploadedPhotos.push(ev.target.result);
+          renderPreviews();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderPreviews() {
+      const container = document.getElementById('photo-previews');
+      container.innerHTML = uploadedPhotos.map((photo, i) => `
+        <div class="photo-preview">
+          <img src="${photo}" alt="Upload">
+          <button class="remove" onclick="removePhoto(${i})">×</button>
+        </div>
+      `).join('');
+    }
+
+    function removePhoto(i) {
+      uploadedPhotos.splice(i, 1);
+      renderPreviews();
+    }
+
+    function submitComplaint(e) {
+      e.preventDefault();
+      const complaint = {
+        id: 'CMP-' + Date.now(),
+        type: document.getElementById('issue-type').value,
+        order: document.getElementById('order-number').value,
+        email: document.getElementById('customer-email').value,
+        description: document.getElementById('issue-description').value,
+        photos: uploadedPhotos,
+        date: new Date().toISOString(),
+        status: 'Open'
+      };
+
+      // Store in admin's localStorage (accessible on admin dashboard)
+      const existing = JSON.parse(localStorage.getItem('trendpulse_complaints') || '[]');
+      existing.unshift(complaint);
+      localStorage.setItem('trendpulse_complaints', JSON.stringify(existing));
+
+      // Show success
+      document.getElementById('complaint-form-card').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    }
+  </script>
+  <script src="/script.js"></script>
+</body>
+</html>

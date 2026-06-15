@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — TrendPulse AI</title>
+  <meta name="description" content="Discover trending products at unbeatable prices. AI-curated, dropshipped direct to your door.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="TrendPulse AI">
+  <meta property="og:description" content="AI-curated trending products delivered to your door.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://trendpulse-ai.com">
+  <meta name="pinterest-rich-pin" content="true">
+  <link rel="canonical" href="https://trendpulse-ai.com/product.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .reviews-section { padding: 60px 0; background: var(--light); }
+    .reviews-section h2 { text-align: center; margin-bottom: 32px; }
+    .review-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 12px; }
+    .review-card .review-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .review-card .review-name { font-weight: 600; font-size: 0.9rem; }
+    .review-card .review-date { font-size: 0.8rem; color: var(--gray-500); }
+    .review-card .review-stars { color: #f59e0b; font-size: 1rem; }
+    .review-card .review-text { font-size: 0.9rem; color: var(--gray-700); line-height: 1.5; }
+    .review-card .review-verified { display: inline-block; font-size: 0.75rem; color: #16a34a; font-weight: 600; margin-top: 4px; }
+    
+    .review-form-section { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 600px; margin: 0 auto; }
+    .review-form-section h3 { margin-bottom: 16px; }
+    .review-form-section .form-group { margin-bottom: 16px; }
+    .review-form-section label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 4px; }
+    .review-form-section input, .review-form-section textarea {
+      width: 100%; padding: 10px 14px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 0.9rem; font-family: inherit;
+    }
+    .review-form-section input:focus, .review-form-section textarea:focus { outline: none; border-color: var(--primary); }
+    .review-form-section textarea { min-height: 80px; resize: vertical; }
+    .star-selector { display: flex; gap: 4px; margin-bottom: 12px; }
+    .star-selector span { font-size: 1.8rem; cursor: pointer; color: #d1d5db; transition: color 0.15s; }
+    .star-selector span:hover, .star-selector span.active { color: #f59e0b; }
+    
+    .discount-reward {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .discount-reward .code-display {
+      background: white;
+      border: 2px dashed var(--primary);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--primary);
+      display: inline-block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .discount-reward .code-display:hover { background: #f8f4ff; }
+    .margin-safe-badge {
+      font-size: 0.75rem;
+      color: #16a34a;
+      background: #f0fdf4;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><div class="logo-icon">⚡</div><span>TrendPulse AI</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/complaints.html">Support</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="product-detail" class="product-detail"></section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <h2>⭐ Customer Reviews</h2>
+      <div id="reviews-container">
+        <p style="text-align:center;color:var(--gray-500);padding:20px;">No reviews yet. Be the first!</p>
+      </div>
+
+      <div class="review-form-section" id="review-form-section">
+        <h3>✍️ Write a Review — Get 10% Off Your Next Order!</h3>
+        <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:16px;">
+          Leave an honest review about this product and instantly receive a <strong>10% discount code</strong> 
+          for your next purchase. <span class="margin-safe-badge">✅ We checked — 10% off still keeps prices fair for us!</span>
+        </p>
+        <form id="review-form" onsubmit="submitReview(event)">
+          <input type="hidden" id="review-product-id">
+          
+          <div class="form-group">
+            <label>Your Name (or nickname)</label>
+            <input type="text" id="review-name" placeholder="e.g. Sarah K." required>
+          </div>
+          
+          <div class="form-group">
+            <label>Your Email (for your discount code)</label>
+            <input type="email" id="review-email" placeholder="you@example.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Rating</label>
+            <div class="star-selector" id="star-selector">
+              <span data-star="1" onclick="setStar(1)">★</span>
+              <span data-star="2" onclick="setStar(2)">★</span>
+              <span data-star="3" onclick="setStar(3)">★</span>
+              <span data-star="4" onclick="setStar(4)">★</span>
+              <span data-star="5" onclick="setStar(5)">★</span>
+            </div>
+            <input type="hidden" id="review-rating" value="5">
+          </div>
+          
+          <div class="form-group">
+            <label>Your Review</label>
+            <textarea id="review-text" placeholder="What did you like? How was the quality? Would you recommend it?" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-accent" style="width:100%;">⭐ Submit Review & Get 10% Off →</button>
+        </form>
+        
+        <div id="discount-reward" class="discount-reward" style="display:none;">
+          <p style="font-weight:700;margin-bottom:8px;">🎉 Thanks for your review!</p>
+          <p style="font-size:0.9rem;color:var(--gray-600);margin-bottom:4px;">Your 10% off discount code:</p>
+          <div class="code-display" id="discount-code" onclick="copyCode(this)">TREND10-XYZ123</div>
+          <p style="font-size:0.8rem;color:var(--gray-500);">Click to copy · Valid on your next order at paypal.me/VikingTails</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Section -->
+  <section class="social-section">
+    <div class="container">
+      <h3>📌 Share & Follow</h3>
+      <p style="color:var(--gray-600);margin-bottom:16px;">Love this product? Pin it and follow for more trending finds</p>
+      <a href="https://www.pinterest.com/trendpulseai" target="_blank" rel="noopener" class="pinterest-follow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        Follow @TrendPulseAI
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color:var(--white);"><div class="logo-icon">⚡</div><span style="-webkit-text-fill-color:var(--white);">TrendPulse AI</span></div>
+          <p>AI-powered product discovery. We find the trends so you can enjoy the best products at the best prices.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="/about.html">About Us</a>
+          <a href="/complaints.html">Report Issue</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <a href="/">Gadgets</a>
+          <a href="/">Home & Living</a>
+          <a href="/">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <a href="/about.html#shipping">Shipping Info</a>
+          <a href="/about.html#returns">Returns Policy</a>
+          <a href="/complaints.html">Support</a>
+          <a href="https://www.pinterest.com/trendpulseai" target="_blank" rel="noopener">Pinterest</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 TrendPulse AI</span><span>Made with ❤️</span></div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+  <script>
+    let currentRating = 5;
+
+    function setStar(n) {
+      currentRating = n;
+      document.getElementById('review-rating').value = n;
+      document.querySelectorAll('.star-selector span').forEach(s => {
+        s.classList.toggle('active', parseInt(s.dataset.star) <= n);
+      });
+    }
+
+    function generateDiscountCode() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = 'TREND10-';
+      for (let i = 0; i < 6; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+      return code;
+    }
+
+    function copyCode(el) {
+      navigator.clipboard.writeText(el.textContent).then(() => {
+        el.style.background = '#f0fdf4';
+        el.style.borderColor = '#16a34a';
+        setTimeout(() => { el.style.background = 'white'; el.style.borderColor = 'var(--primary)'; }, 2000);
+      });
+    }
+
+    function submitReview(e) {
+      e.preventDefault();
+      const productId = document.getElementById('review-product-id').value;
+      const name = document.getElementById('review-name').value;
+      const email = document.getElementById('review-email').value;
+      const rating = document.getElementById('review-rating').value;
+      const text = document.getElementById('review-text').value;
+      
+      const discountCode = generateDiscountCode();
+
+      // Save review
+      const reviews = JSON.parse(localStorage.getItem('trendpulse_reviews') || '[]');
+      reviews.unshift({
+        id: 'REV-' + Date.now(),
+        productId,
+        name,
+        email,
+        rating: parseInt(rating),
+        text,
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+        verified: true
+      });
+      localStorage.setItem('trendpulse_reviews', JSON.stringify(reviews));
+
+      // Save discount code
+      const codes = JSON.parse(localStorage.getItem('trendpulse_discount_codes') || '[]');
+      codes.unshift({
+        code: discountCode,
+        email,
+        productId,
+        created: new Date().toISOString(),
+        used: false,
+        discount_percent: 10
+      });
+      localStorage.setItem('trendpulse_discount_codes', JSON.stringify(codes));
+
+      // Show discount
+      document.getElementById('review-form').style.display = 'none';
+      document.getElementById('discount-code').textContent = discountCode;
+      document.getElementById('discount-reward').style.display = 'block';
+
+      // Reload reviews
+      loadReviews();
+    }
+
+    function loadReviews() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+      if (!productId) return;
+
+      document.getElementById('review-product-id').value = productId;
+      
+      const allReviews = JSON.parse(localStorage.getItem('trendpulse_reviews') || '[]');
+      const productReviews = allReviews.filter(r => r.productId === productId);
+      
+      const container = document.getElementById('reviews-container');
+      if (productReviews.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:var(--gray-500);padding:20px;">No reviews yet. Be the first!</p>';
+        return;
+      }
+
+      container.innerHTML = productReviews.map(r => `
+        <div class="review-card">
+          <div class="review-header">
+            <span class="review-name">${r.name}</span>
+            <span class="review-date">${r.date}</span>
+          </div>
+          <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+          <div class="review-text">${r.text}</div>
+          <div class="review-verified">✅ Verified Purchase</div>
+        </div>
+      `).join('') + '<p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--gray-500);">Leave a review above to get 10% off your next order!</p>';
+    }
+
+    // Override renderProductDetail to show reviews after product loads
+    const origRender = window.renderProductDetail;
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wait for product to load, then show reviews
+      setTimeout(loadReviews, 500);
+    });
+  </script>
+</body>
+</html>
