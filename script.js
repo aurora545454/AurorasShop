@@ -140,10 +140,24 @@ async function renderProductDetail() {
               📌 Pin It
             </a>
           </div>
+          <div class="product-shipping" style="margin-top:16px;padding:12px 16px;background:#f8f9fa;border-radius:10px;font-size:0.85rem;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span>🚚 <strong>Free Worldwide Shipping</strong></span>
+              <span style="color:var(--gray-600);">📬 Tracking included</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;font-size:0.8rem;color:var(--gray-600);">
+              <span>🇺🇸 US/CA: <strong>10–20 days</strong></span>
+              <span>🇪🇺 Europe: <strong>10–20 days</strong></span>
+              <span>🇦🇺 Australia: <strong>12–22 days</strong></span>
+              <span>🌏 Asia: <strong>7–15 days</strong></span>
+              <span>🇬🇧 UK: <strong>10–18 days</strong></span>
+              <span>🌍 Other: <strong>15–30 days</strong></span>
+            </div>
+          </div>
           <div class="guarantee-badges">
             <span class="guarantee-badge">✅ Secure checkout via PayPal</span>
             <span class="guarantee-badge">🔒 30-Day Money-Back Guarantee</span>
-            <span class="guarantee-badge">🚚 Fast & Free Worldwide Shipping</span>
+            <span class="guarantee-badge">🚚 Tracking on every order</span>
           </div>
         </div>
       </div>
