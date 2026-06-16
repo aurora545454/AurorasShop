@@ -281,7 +281,7 @@
     "badge": "New",
     "free_shipping": true,
     "limited_offer": true,
-    "image": "https://ae-pic-a1.aliexpress-media.com/kf/S0f5a83290b49410fa63c04a543562bb1L.jpg",
+    "image": "https://images.unsplash.com/photo-1544568100-847a948585b9?w=600&q=80",
     "paypal_link": "https://www.paypal.me/VikingTails/17.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.aliexpress.us/item/3256809028394498.html"
@@ -311,5 +311,32 @@
     "paypal_link": "https://www.paypal.me/VikingTails/22.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.aliexpress.com/w/wholesale-digital-kitchen-food-scale-nutrition.html"
+  },
+  {
+    "id": "prod-013",
+    "title": "Retractable Dog Leash - Heavy Duty with LED Light",
+    "slug": "retractable-dog-leash-heavy-duty-led",
+    "category": "Pets & Dogs",
+    "description": "Premium retractable dog leash with durable nylon tape (16ft). Features built-in LED light for night walks, ergonomic non-slip handle, and one-button brake system. Suitable for dogs up to 110 lbs.",
+    "features": [
+      "16ft retractable nylon tape",
+      "Built-in LED light for night visibility",
+      "Ergonomic non-slip comfort handle",
+      "One-button brake & lock system",
+      "Durable for dogs up to 110 lbs",
+      "Reflective stitching for safety"
+    ],
+    "price": 29.99,
+    "sale_price": 16.99,
+    "supplier_cost": 7.5,
+    "rating": 4.5,
+    "review_count": 584,
+    "badge": "New",
+    "free_shipping": true,
+    "limited_offer": true,
+    "image": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&q=80",
+    "paypal_link": "https://www.paypal.me/VikingTails/16.99",
+    "paypal_email": "VikingTails",
+    "supplier_link": "https://www.aliexpress.com/w/wholesale-retractable-dog-leash-led.html"
   }
 ]
