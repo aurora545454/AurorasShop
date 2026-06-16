@@ -1,5 +1,5 @@
 /* ============================================
-   TrendPulse AI — Storefront Scripts
+   Auroras Store — Storefront Scripts
    ============================================ */
 
 // --- Global state ---
@@ -102,7 +102,7 @@ async function renderProductDetail() {
   const discount = Math.round((1 - product.sale_price / product.price) * 100);
   const badgeClass = (product.badge || '').toLowerCase().replace(/\s+/g, '');
 
-  document.title = `${product.title} — TrendPulse AI`;
+  document.title = `${product.title} — Auroras Store`;
 
   container.innerHTML = `
     <div class="container">
@@ -135,7 +135,7 @@ async function renderProductDetail() {
             <a href="${product.paypal_link}" target="_blank" rel="noopener" class="btn btn-accent btn-lg">
               🛒 Buy Now — $${product.sale_price.toFixed(2)}
             </a>
-            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' — Only $' + product.sale_price.toFixed(2) + ' at TrendPulse AI')}" 
+            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' — Only $' + product.sale_price.toFixed(2) + ' at Auroras Store')}" 
                target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
               📌 Pin It
             </a>
@@ -204,7 +204,7 @@ function setupPinterestShare() {
       e.preventDefault();
       const url = btn.dataset.url || window.location.href;
       const media = btn.dataset.media || '';
-      const desc = btn.dataset.desc || 'TrendPulse AI — Trending Products';
+      const desc = btn.dataset.desc || 'Auroras Store — Trending Products';
       const pinUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(media)}&description=${encodeURIComponent(desc)}`;
       window.open(pinUrl, '_blank', 'width=750,height=600');
     });
