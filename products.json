@@ -281,7 +281,7 @@
     "badge": "New",
     "free_shipping": true,
     "limited_offer": true,
-    "image": "https://images.unsplash.com/photo-1544568100-847a948585b9?w=600&q=80",
+    "image": "https://ae-pic-a1.aliexpress-media.com/kf/S0f5a83290b49410fa63c04a543562bb1L.jpg",
     "paypal_link": "https://www.paypal.me/VikingTails/17.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.aliexpress.us/item/3256809028394498.html"
@@ -338,5 +338,32 @@
     "paypal_link": "https://www.paypal.me/VikingTails/16.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.aliexpress.com/w/wholesale-retractable-dog-leash-led.html"
+  },
+  {
+    "id": "prod-014",
+    "title": "Pet Hair Remover & Grooming Glove",
+    "slug": "pet-hair-remover-grooming-glove",
+    "category": "Pets & Dogs",
+    "description": "Effective pet hair removal grooming glove with silicone tips. Removes loose fur while petting your dog. Comfortable for pets, easy to clean. Perfect for dogs and cats of all sizes.",
+    "features": [
+      "Silicone grooming tips",
+      "Removes loose fur effectively",
+      "Comfortable for your pet",
+      "Easy to clean - rinse with water",
+      "Works on dogs and cats",
+      "Massage action for bonding"
+    ],
+    "price": 24.99,
+    "sale_price": 12.99,
+    "supplier_cost": 5.99,
+    "rating": 4.4,
+    "review_count": 1876,
+    "badge": "Trending",
+    "free_shipping": true,
+    "limited_offer": true,
+    "image": "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80",
+    "paypal_link": "https://www.paypal.me/VikingTails/12.99",
+    "paypal_email": "VikingTails",
+    "supplier_link": "https://www.aliexpress.com/item/1005007174051011.html"
   }
 ]
