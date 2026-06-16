@@ -365,5 +365,32 @@
     "paypal_link": "https://www.paypal.me/VikingTails/12.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.aliexpress.com/item/1005007174051011.html"
+  },
+  {
+    "id": "prod-015",
+    "title": "Anti-Pull Dog Training Collar - Head Harness for Large Dogs",
+    "slug": "anti-pull-dog-training-collar-head-harness",
+    "category": "Pets & Dogs",
+    "description": "Stop your dog pulling with this humane anti-pull training collar. Features a head collar design with rear-traction hook that gently guides your dog. Perfect for large breeds prone to pulling and excitement during walks.",
+    "features": [
+      "Head collar design - humane anti-pull training",
+      "Rear-traction hook for walking control",
+      "Stops pulling instantly without choking",
+      "Suitable for large breed dogs",
+      "Adjustable straps for perfect fit",
+      "Durable nylon construction"
+    ],
+    "price": 49.99,
+    "sale_price": 27.99,
+    "supplier_cost": 13.87,
+    "rating": 4.5,
+    "review_count": 412,
+    "badge": "Trending",
+    "free_shipping": true,
+    "limited_offer": true,
+    "image": "https://img.kwcdn.com/product/fancy/926fff9e-6522-41de-8664-69063068b2d8.jpg",
+    "paypal_link": "https://www.paypal.me/VikingTails/27.99",
+    "paypal_email": "VikingTails",
+    "supplier_link": "https://www.temu.com/goods.html?goods_id=606030016671736"
   }
 ]
