@@ -14,16 +14,43 @@
       "Durable nylon construction"
     ],
     "price": 49.99,
-    "sale_price": 27.99,
-    "supplier_cost": 13.87,
+    "sale_price": 34.99,
+    "supplier_cost": 17.0,
     "rating": 4.5,
     "review_count": 412,
     "badge": "Trending",
     "free_shipping": true,
     "limited_offer": true,
     "image": "https://img.kwcdn.com/product/fancy/926fff9e-6522-41de-8664-69063068b2d8.jpg",
-    "paypal_link": "https://www.paypal.me/VikingTails/27.99",
+    "paypal_link": "https://www.paypal.me/VikingTails/34.99",
     "paypal_email": "VikingTails",
     "supplier_link": "https://www.temu.com/goods.html?goods_id=606030016671736"
+  },
+  {
+    "id": "prod-002",
+    "title": "LED Dog Harness - Reflective Vest with USB Charging",
+    "slug": "led-dog-harness-reflective-vest-usb",
+    "category": "Pets & Dogs",
+    "description": "Bright LED dog harness with built-in rechargeable LED strips. Features 3 lighting modes (steady, slow flash, fast flash), USB-C charging, and reflective strips. Perfect for night walks, camping, and outdoor adventures.",
+    "features": [
+      "Built-in LED strips - 3 lighting modes",
+      "USB-C rechargeable battery",
+      "Reflective strips for visibility",
+      "Adjustable fit for all sizes",
+      "Lightweight breathable mesh",
+      "Quick-release buckles"
+    ],
+    "price": 39.99,
+    "sale_price": 22.99,
+    "supplier_cost": 10.5,
+    "rating": 4.6,
+    "review_count": 523,
+    "badge": "New",
+    "free_shipping": true,
+    "limited_offer": true,
+    "image": "https://images.unsplash.com/photo-1610645513698-6d9cfbd8ce43?w=600&q=80",
+    "paypal_link": "https://www.paypal.me/VikingTails/22.99",
+    "paypal_email": "VikingTails",
+    "supplier_link": "https://www.temu.com/goods.html?goods_id=led-dog-harness"
   }
 ]
