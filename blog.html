@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Auroras Store | Dog Training Tips & Pet Care Stories</title>
+  <meta name="description" content="Real stories and tips from a girl who rebuilt her life with her dog Aurora by her side. Dog training advice, pet care guides, and heartfelt stories about living with a furry best friend.">
+  <meta name="keywords" content="dog training, pet care, dog collar tips, anti-pull training, LED dog harness, dog stories, pet blog">
+  <meta property="og:title" content="Auroras Store Blog — Dog Training Tips & Pet Care Stories">
+  <meta property="og:description" content="Real stories and tips from a girl who rebuilt her life with her dog Aurora by her side.">
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="https://auroras-store.com/blog.html">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1544568100-847a948585b9?w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="pinterest-rich-pin" content="true">
+  <link rel="canonical" href="https://auroras-store.com/blog.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='16' y='26' text-anchor='middle' font-size='24'>🐾</text></svg>">
+  <style>
+    .blog-header { background: linear-gradient(135deg, #6C3BD2 0%, #FF3366 100%); color: white; padding: 60px 0 50px; text-align: center; }
+    .blog-header h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 12px; }
+    .blog-header p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; padding: 60px 0; }
+    .blog-card { background: var(--white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid var(--gray-200); }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .blog-card-image { height: 200px; overflow: hidden; background: var(--gray-100); }
+    .blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .blog-card:hover .blog-card-image img { transform: scale(1.05); }
+    .blog-card-body { padding: 24px; }
+    .blog-card-meta { font-size: 0.8rem; color: var(--gray-600); display: flex; gap: 12px; margin-bottom: 8px; }
+    .blog-card-category { color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.75rem; }
+    .blog-card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .blog-card-title a { color: var(--dark); }
+    .blog-card-title a:hover { color: var(--primary); }
+    .blog-card-excerpt { font-size: 0.9rem; color: var(--gray-700); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .blog-card-footer { padding: 16px 24px; border-top: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; }
+    .pinterest-share-btn { display: inline-flex; align-items: center; gap: 6px; background: #E60023; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition); border: none; }
+    .pinterest-share-btn:hover { background: #C0001E; transform: translateY(-1px); color: white; }
+    .featured-post { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); margin-top: -30px; border: 1px solid var(--gray-200); }
+    .featured-post-image { height: 100%; min-height: 350px; overflow: hidden; }
+    .featured-post-image img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-post-body { padding: 40px 40px 40px 0; display: flex; flex-direction: column; justify-content: center; }
+    .featured-post-body .blog-card-category { font-size: 0.85rem; }
+    .featured-post-body h2 { font-size: 1.6rem; margin: 8px 0; }
+    .featured-post-body p { font-size: 1rem; color: var(--gray-700); line-height: 1.7; margin-bottom: 16px; }
+    .blog-sidebar { background: var(--white); border-radius: var(--radius-md); padding: 28px; border: 1px solid var(--gray-200); margin-bottom: 24px; }
+    .blog-sidebar h3 { font-size: 1rem; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--primary); }
+    .blog-sidebar ul { list-style: none; }
+    .blog-sidebar li { margin-bottom: 10px; }
+    .blog-sidebar a { color: var(--gray-700); font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    .blog-sidebar a:hover { color: var(--primary); }
+    .blog-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; padding: 60px 0; }
+    @media (max-width: 768px) { .featured-post { grid-template-columns: 1fr; } .featured-post-image { min-height: 250px; } .featured-post-body { padding: 24px; } .blog-layout { grid-template-columns: 1fr; } .blog-grid { grid-template-columns: 1fr; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Auroras Store Blog",
+    "description": "Dog training tips, pet care stories, and life with Aurora"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><div class="logo-icon">🐾</div><span>Auroras Store</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/about.html">Our Story</a>
+        <a href="/blog.html" class="active">Blog</a>
+        <a href="/complaints.html">Support</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="blog-header">
+    <div class="container">
+      <h1>🐾 Aurora's Blog</h1>
+      <p>Real stories about living with a dog who changed everything — plus tips to make walks better, gear that actually works, and the occasional slobbery kiss.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="featured-post">
+      <div class="featured-post-image">
+        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=800&q=80" alt="Dog wearing a training collar" loading="lazy">
+      </div>
+      <div class="featured-post-body">
+        <span class="blog-card-category">⭐ Featured Story</span>
+        <h2>How My Dog Aurora Helped Me Walk Again</h2>
+        <p>After breaking my back, I spent months learning to walk again. Some days I wanted to give up — but Aurora wouldn't let me. She'd nudge my hand, rest her head on my lap, and wait patiently by the door until I was ready to try again. This is the story of how a rescue dog rescued me right back, and why every product in this store is one we've tested together — on good days and hard ones.</p>
+        <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1544568100-847a948585b9?w=800&q=80&description=How%20My%20Dog%20Aurora%20Helped%20Me%20Walk%20Again" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Share on Pinterest</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="blog-layout">
+      <div>
+        <h2 style="margin-bottom:24px;">📖 Latest Posts</h2>
+        <div class="blog-grid" id="blog-grid">
+          <!-- Post 1 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1553882809-a4f57e595701?w=600&q=80" alt="Happy dog on a walk" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Dog Training</span><span>5 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-why-pulling">Why Dogs Pull on Leashes (And How to Fix It Kindly)</a></h3>
+              <p class="blog-card-excerpt">Pulling isn't disobedience — it's excitement. Most dogs pull because walking forward is rewarding. Learn the gentle, effective method that stopped Aurora's pulling without any yanking or choking.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1553882809-a4f57e595701?w=600&q=80&description=Why%20Dogs%20Pull%20on%20Leashes%20(And%20How%20to%20Fix%20It%20Kindly)" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/product.html?id=prod-001" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Shop the collar →</a>
+            </div>
+          </article>
+          <!-- Post 2 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1610645513698-6d9cfbd8ce43?w=600&q=80" alt="Dog wearing LED harness at night" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Pet Safety</span><span>4 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-night-walks">Night Walks with Your Dog: Safety Tips for Dark Winter Months</a></h3>
+              <p class="blog-card-excerpt">When the sun sets early, visibility changes everything. From reflective gear to lighting choices, here's how we keep Aurora safe and visible during our evening walks — plus the LED harness that gives us both peace of mind.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1610645513698-6d9cfbd8ce43?w=600&q=80&description=Night%20Walks%20with%20Your%20Dog%3A%20Safety%20Tips" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/product.html?id=prod-002" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Shop the harness →</a>
+            </div>
+          </article>
+          <!-- Post 3 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80" alt="Dog toys and accessories" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Product Reviews</span><span>6 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-temu-vs-retail">I Bought 50 Dog Products on Temu — Here's What Actually Worked</a></h3>
+              <p class="blog-card-excerpt">After my injury, I couldn't afford premium pet store prices. I tested dozens of budget-friendly dog products to find the hidden gems. Spoiler: most were junk, but a few — like our anti-pull collar — genuinely outperformed the expensive brands.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80&description=I%20Bought%2050%20Dog%20Products%20on%20Temu%20-%20Here's%20What%20Worked" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/product.html?id=prod-001" style="font-size:0.85rem;color:var(--primary);font-weight:600;">See our picks →</a>
+            </div>
+          </article>
+          <!-- Post 4 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80" alt="Person petting a dog" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Health & Recovery</span><span>7 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-healing">Healing with a Dog By Your Side: How Pets Help Physical Recovery</a></h3>
+              <p class="blog-card-excerpt">Studies show that狗 owners recover faster from injuries — and I lived it. From forced rest to slow walks, Aurora became my physio partner, my alarm clock, and the reason I kept going even when every step hurt. Here's what the science says about healing with a dog.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80&description=Healing%20with%20a%20Dog%20By%20Your%20Side" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/about.html" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Read our story →</a>
+            </div>
+          </article>
+          <!-- Post 5 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&q=80" alt="Dog walking on trail" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Dog Care</span><span>3 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-collar-fit">How to Measure Your Dog for a Perfect Collar Fit</a></h3>
+              <p class="blog-card-excerpt">A collar that's too loose slips off. Too tight and it chafes. Here's the two-finger rule that professional trainers use, plus a sizing guide for our anti-pull training collar — because comfort matters as much as control.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&q=80&description=How%20to%20Measure%20Your%20Dog%20for%20a%20Perfect%20Collar%20Fit" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/product.html?id=prod-001" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Shop now →</a>
+            </div>
+          </article>
+          <!-- Post 6 -->
+          <article class="blog-card">
+            <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Cozy dog bed" loading="lazy"></div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta"><span class="blog-card-category">Lifestyle</span><span>4 min read</span></div>
+              <h3 class="blog-card-title"><a href="#post-small-business">Why I Started a One-Woman Dog Store from My Living Room</a></h3>
+              <p class="blog-card-excerpt">After my injury, returning to a normal 9-to-5 felt impossible. So I built something smaller — a tiny store where I could work from my sofa with Aurora curled beside me. No investors, no inventory, just me, my dog, and products I actually believe in.</p>
+            </div>
+            <div class="blog-card-footer">
+              <a href="https://pinterest.com/pin/create/button/?url=https://auroras-store.com/blog.html&media=https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80&description=Why%20I%20Started%20a%20One-Woman%20Dog%20Store" target="_blank" rel="noopener" class="pinterest-share-btn">📌 Pin</a>
+              <a href="/about.html" style="font-size:0.85rem;color:var(--primary);font-weight:600;">Our story →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      <aside>
+        <div class="blog-sidebar">
+          <h3>📂 Categories</h3>
+          <ul>
+            <li><a href="#">🐕 Dog Training</a></li>
+            <li><a href="#">🌙 Pet Safety</a></li>
+            <li><a href="#">⭐ Product Reviews</a></li>
+            <li><a href="#">💚 Health & Recovery</a></li>
+            <li><a href="#">🫶 Dog Care</a></li>
+            <li><a href="#">🏡 Lifestyle</a></li>
+            <li><a href="#">📖 Our Story</a></li>
+          </ul>
+        </div>
+        <div class="blog-sidebar">
+          <h3>🛍️ Shop</h3>
+          <ul>
+            <li><a href="/product.html?id=prod-001">🔗 Anti-Pull Dog Collar — $34.99</a></li>
+            <li><a href="/product.html?id=prod-002">💡 LED Dog Harness — $39.99</a></li>
+          </ul>
+        </div>
+        <div class="blog-sidebar">
+          <h3>📌 Follow</h3>
+          <a href="https://www.pinterest.com/aurorasstore" target="_blank" rel="noopener" class="pinterest-follow" style="display:flex;align-items:center;gap:8px;background:#E60023;color:white;padding:10px 20px;border-radius:50px;font-weight:600;font-size:0.9rem;margin-top:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            Follow @AurorasStore
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <section class="social-section">
+    <div class="container">
+      <h3>📌 Share & Follow</h3>
+      <p style="color:var(--gray-600);margin-bottom:16px;">Love these stories? Pin them and follow for more dog content</p>
+      <a href="https://www.pinterest.com/aurorasstore" target="_blank" rel="noopener" class="pinterest-follow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        Follow @AurorasStore
+      </a>
+    </div>
+  </section>
+
+  <section class="newsletter-section" style="background:linear-gradient(135deg,#6C3BD2,#FF3366);">
+    <div class="container">
+      <h2>📬 Get New Posts</h2>
+      <p>New dog tips, product reviews, and stories delivered to your inbox.</p>
+      <form id="newsletter-form" class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required aria-label="Email">
+        <button type="submit" class="btn" style="background:white;color:#6C3BD2;">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color:var(--white);"><div class="logo-icon">🐾</div><span style="-webkit-text-fill-color:var(--white);">Auroras Store</span></div>
+          <p>A tiny, heartfelt pet store run by a girl and her dog Aurora. Every purchase helps a single person live a bit better life.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="/">Home</a>
+          <a href="/about.html">Our Story</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="/product.html?id=prod-001">Dog Training Collar</a>
+          <a href="/product.html?id=prod-002">LED Dog Harness</a>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <a href="/complaints.html">Support</a>
+          <a href="/about.html#shipping">Shipping Info</a>
+          <a href="/about.html#returns">Returns</a>
+          <a href="https://www.pinterest.com/aurorasstore" target="_blank" rel="noopener">Pinterest</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Auroras Store. Made with ❤️ and a lot of dog hair.</span>
+        <span>Prices in USD · PayPal Secure</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
